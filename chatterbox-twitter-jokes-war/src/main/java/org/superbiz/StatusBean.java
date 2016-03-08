@@ -16,36 +16,60 @@
  */
 package org.superbiz;
 
-import org.tomitribe.chatterbox.twitter.api.InvokeAllMatches;
+import org.tomitribe.chatterbox.twitter.api.Response;
 import org.tomitribe.chatterbox.twitter.api.Tweet;
 import org.tomitribe.chatterbox.twitter.api.TweetParam;
 import org.tomitribe.chatterbox.twitter.api.TwitterUpdates;
-import org.tomitribe.chatterbox.twitter.api.User;
 import org.tomitribe.chatterbox.twitter.api.UserParam;
 
 import javax.ejb.MessageDriven;
 import java.util.logging.Logger;
 
 @MessageDriven(name = "Status")
-@InvokeAllMatches
 public class StatusBean implements TwitterUpdates {
 
-    private final static Logger LOGGER = Logger.getLogger(StatusBean.class.getName());
-
-    @Tweet(".*#TomEE.*")
-    public void tomeeStatus(@TweetParam final String status, @UserParam final String user) {
-        LOGGER.info(String.format("New status: %s, by %s", status, user));
+    @Tweet("(?i).*Knock knock.*")
+    public Response knockKnock(@TweetParam final String status, @UserParam final String user) {
+        return new WhosThere();
     }
 
-    @Tweet(".*#JavaOne.*")
-    public void javaoneStatus(@TweetParam final String status, @UserParam final String user) {
-        LOGGER.info(String.format("New JavaOne status: %s, by %s", status, user));
+    public class WhosThere implements Response {
+
+        @Override
+        public String getMessage() {
+            return "who's there?";
+        }
+
+        public Response who(@TweetParam final String status, @UserParam final String user) {
+            String who = status;
+            if (status != null && status.length() > 0) {
+                who = status.replaceAll("@?(\\w){1,15}(\\s+)", ""); // strip off any referenced usernames
+            }
+
+            return new Who(who);
+        }
     }
 
-    @User(".*jongallimore.*")
-    public void tomitribeStatus(@TweetParam final String status, @UserParam final String user) {
-        LOGGER.info(String.format("New Tomitribe status: %s, by %s", status, user));
+    public class Who implements Response {
+
+        private final String who;
+
+        public Who(final String who) {
+            this.who = who;
+        }
+
+        @Override
+        public String getMessage() {
+            return who + " who?";
+        }
+
+        public String punchline(@TweetParam final String status, @UserParam final String user) {
+            return "Haha, lol. That's a good one, I'll have to remember that.";
+        }
     }
 
 
+    public static class ResponseBuilder {
+
+    }
 }
