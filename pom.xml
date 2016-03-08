@@ -42,6 +42,7 @@
     <module>chatterbox-imap-sample-war</module>
     <module>chatterbox-slack-sample-war</module>
     <module>chatterbox-twitter-sample-war</module>
+    <module>chatterbox-twitter-jokes-war</module>
     <module>chatterbox-xmpp-sample-war</module>
   </modules>
 
