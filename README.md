@@ -1,2 +1,0 @@
-# chatterbox-samples
-Chatterbox examples

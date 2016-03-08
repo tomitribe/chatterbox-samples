@@ -32,7 +32,9 @@ public class InboxReader implements MailListener {
     private static final Logger LOGGER = Logger.getLogger(InboxReader.class.getName());
 
     @Subject(".*test.*")
-    public void logMessage(@FromParam final String from, @SubjectParam final String subject, @BodyParam final String message) {
+    public void logMessage(@FromParam final String from,
+                           @SubjectParam final String subject,
+                           @BodyParam final String message) {
         LOGGER.log(Level.INFO, String.format("Message from: %s, subject: %s", from, subject));
         LOGGER.log(Level.INFO, String.format("Message body: %s", message));
     }

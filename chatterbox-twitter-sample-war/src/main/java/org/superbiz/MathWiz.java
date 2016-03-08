@@ -22,7 +22,7 @@ import org.tomitribe.chatterbox.twitter.api.TwitterUpdates;
 
 import javax.ejb.MessageDriven;
 
-@MessageDriven
+@MessageDriven(name = "MathWiz")
 public class MathWiz implements TwitterUpdates {
 
     @Tweet("(?i)what is 2 ?[*x] ?2")
@@ -47,6 +47,7 @@ public class MathWiz implements TwitterUpdates {
 
     @Tweet("(?i)what is {a} ?+ ?{b}")
     public String plus(@TweetParam("a") int a, @TweetParam("b") int b) {
+
         return String.format("%s plus %s is %s", a, b, a + b);
     }
 

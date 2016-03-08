@@ -24,8 +24,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.tomitribe</groupId>
-    <artifactId>chatterbox-slack-parent</artifactId>
+    <groupId>org.tomitribe.samples</groupId>
+    <artifactId>chatterbox-samples-parent</artifactId>
     <version>0.2-SNAPSHOT</version>
   </parent>
 
@@ -37,13 +37,13 @@
     <dependency>
       <groupId>org.tomitribe</groupId>
       <artifactId>chatterbox-slack-api</artifactId>
-      <version>${project.version}</version>
+      <version>${chatterbox.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.tomitribe</groupId>
       <artifactId>chatterbox-slack-impl</artifactId>
-      <version>${project.version}</version>
+      <version>${chatterbox.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -55,11 +55,13 @@
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
+      <version>7.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.tomitribe</groupId>
       <artifactId>tomitribe-util</artifactId>
+      <version>1.2.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -89,12 +91,12 @@
           <tomeeVersion>${version.tomee}</tomeeVersion>
           <tomeeClassifier>plus</tomeeClassifier>
           <libs>
-            <lib>org.tomitribe:chatterbox-slack-api:${project.version}:jar</lib>
+            <lib>org.tomitribe:chatterbox-slack-api:${chatterbox.version}:jar</lib>
             <lib>org.tomitribe:tomitribe-util:1.1.0:jar</lib>
             <lib>org.tomitribe:tomitribe-crest-api:0.3:jar</lib>
           </libs>
           <apps>
-            <app>org.tomitribe:chatterbox-slack-rar:${project.version}:rar</app>
+            <app>org.tomitribe:chatterbox-slack-rar:${chatterbox.version}:rar</app>
           </apps>
         </configuration>
       </plugin>

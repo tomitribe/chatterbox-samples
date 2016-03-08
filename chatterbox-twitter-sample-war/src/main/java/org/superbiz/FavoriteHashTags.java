@@ -19,13 +19,12 @@ package org.superbiz;
 import org.tomitribe.chatterbox.twitter.api.Tweet;
 import org.tomitribe.chatterbox.twitter.api.TweetParam;
 import org.tomitribe.chatterbox.twitter.api.TwitterUpdates;
-import org.tomitribe.chatterbox.twitter.api.User;
 import org.tomitribe.chatterbox.twitter.api.UserParam;
 
 import javax.ejb.MessageDriven;
 import java.util.logging.Logger;
 
-@MessageDriven(name = "Status")
+@MessageDriven(name = "Hashtags")
 public class FavoriteHashTags implements TwitterUpdates {
 
     private final static Logger LOGGER = Logger.getLogger(FavoriteHashTags.class.getName());
@@ -62,19 +61,4 @@ public class FavoriteHashTags implements TwitterUpdates {
         return "#NightHacking Stephen Chin is like an extremely technical version of the Fonz, with robots.";
     }
 
-    @User(".*jongallimore.*")
-    public String jgallimoreStatus(@TweetParam final String status, @UserParam final String user) {
-
-        LOGGER.info(String.format("New Tomitribe status: %s, by %s", status, user));
-
-        return "Hey, Jon!";
-    }
-
-    @User(".*dblevins.*")
-    public String dblevinsStatus(@TweetParam final String status, @UserParam final String user) {
-
-        LOGGER.info(String.format("New Tomitribe status: %s, by %s", status, user));
-
-        return "Hey, David!";
-    }
 }
